@@ -33,6 +33,16 @@ The following parameters are required in `docusaurus.config.js` to optimize rout
 | `url` | URL for your site. For a site deployed at `https://my-org.com/my-project/`, `url` is `https://my-org.com/`. |
 | `baseUrl` | Base URL for your project, with a trailing slash. For a site deployed at `https://my-org.com/my-project/`, `baseUrl` is `/my-project/`. |
 
+:::note
+
+Docusaurus does not provide built-in authentication or route protection for navbar or markdown file routes. To restrict access to certain pages or routes, you can:
+
+- Deploy your site behind an authentication proxy (for example, using [OAuth2 Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) or similar solutions).
+- Configure authentication at the web server or CDN level (for example, using HTTP Basic Auth with Nginx or protected routes in Netlify/Vercel).
+- Implement custom React components using `BrowserOnly` to conditionally render content based on authentication state. For example, you can wrap sensitive content in a component that checks for a valid session.
+
+:::
+
 ## Testing your Build Locally {#testing-build-locally}
 
 It is important to test your build locally before deploying it for production. Docusaurus provides a [`docusaurus serve`](cli.mdx#docusaurus-serve-sitedir) command for that:
