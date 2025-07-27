@@ -102,19 +102,17 @@ How the Markdown files are arranged under the `docs` folder can have multiple im
 
 ### Document ID {#document-id}
 
-Every document has a unique `id`. By default, a document `id` is the name of the document (without the extension) relative to the root docs directory.
+Every document has a unique `id`. By default, a document's `id` is its file path (without the extension), relative to the root `docs` directory.
 
-For example, the ID of `greeting.md` is `greeting`, and the ID of `guide/hello.md` is `guide/hello`.
+For example:
+- The ID of `greeting.md` is `greeting`.
+- The ID of `guide/hello.md` is `guide/hello`.
 
-```bash
-website # Root directory of your site
-└── docs
-   ├── greeting.md
-   └── guide
-      └── hello.md
 ```
 
-However, the **last part** of the `id` can be defined by the user in the front matter. For example, if `guide/hello.md`'s content is defined as below, its final `id` is `guide/part1`.
+#### Customizing the Document ID
+
+You can override the **last part** of the `id` in the document's front matter. For example, if `guide/hello.md` contains:
 
 ```md
 ---
@@ -124,7 +122,22 @@ id: part1
 Lorem ipsum
 ```
 
-The ID is used to refer to a document when hand-writing sidebars, or when using docs-related layout components or hooks.
+The final `id` becomes `guide/part1`.
+
+#### Using Document IDs
+
+- Use the document `id` to reference docs in sidebars, links, or when using docs-related components and hooks.
+- To link to a doc, use its `id` (e.g., `guide/part1`).
+
+#### ID Rules and Best Practices
+
+- IDs can contain letters, numbers, dashes, and slashes (`/`).
+- IDs are case-sensitive.
+- Each document must have a unique `id`. Duplicate IDs will cause build errors.
+- Avoid spaces or special characters in IDs.
+- If you move or rename a file, update all references to its `id`.
+
+> **Tip:** Use clear, descriptive IDs to make linking and organization easier.
 
 ### Doc URLs {#doc-urls}
 
