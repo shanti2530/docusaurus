@@ -155,9 +155,31 @@ website # Root directory of your site
         └── hello.md
 ```
 
-By default, `hello.md` will be available at `/docs/guide/hello`. You can change its URL location to `/docs/bonjour`:
+### Document ID and Slug {#document-id-slug}
+
+Every document in Docusaurus has a unique `id`. By default, this `id` is based on the document's file name relative to the root of the `docs` directory. The `id` is important for internal references within Docusaurus, such as when creating sidebars or using layout components.
+
+- **Example**: If you have a file `guide/hello.md`, its default `id` is `guide/hello`.
+
+The `id` can be specifically set in the front matter to customize it:
 
 ```md
+title="guide/hello.md"
+---
+id: customId
+---
+
+# Hello from Docusaurus
+```
+
+#### URLs and Slugs
+
+By default, a document's URL is auto-generated based on the `id`, but it can be customized using the `slug` in the front matter. The `slug` defines the URL path where the document is accessible.
+
+- **Example**: By default, `hello.md` would be available at `/docs/guide/hello`. However, you can change it to be accessed at a different path by setting the `slug`:
+
+```md
+title="guide/hello.md"
 ---
 slug: /bonjour
 ---
@@ -165,22 +187,16 @@ slug: /bonjour
 Lorem ipsum
 ```
 
-`slug` will be appended to the doc plugin's `routeBasePath`, which is `/docs` by default. See [Docs-only mode](docs-introduction.mdx#docs-only-mode) for how to remove the `/docs` part from the URL.
+In this case, `hello.md` will be accessible via `/docs/bonjour`. The `slug` can be absolute or relative:
 
-:::note
-
-It is possible to use:
-
-- absolute slugs: `slug: /mySlug`, `slug: /`...
-- relative slugs: `slug: mySlug`, `slug: ./../mySlug`...
-
-:::
+- Absolute: `slug: /absolute-path`
+- Relative: `slug: relative-path`
 
 :::tip
-
-Changing a document's filename or `id`, will change its default URL. To prevent breaking permalinks when renaming files, we recommend setting an explicit `slug` to keep your URLs stable.
-
+**Make sure** to set an explicit `slug` if changing a document's filename or `id`. This maintains URL stability and prevents breaking existing permalinks.
 :::
+
+By understanding how `id` and `slug` are used, you can better organize and control how your documentation is published and accessed. It is recommended to define them clearly to ensure consistent URL structures and ease of navigation.
 
 #### Making a document available at the root
 
