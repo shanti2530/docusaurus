@@ -299,6 +299,32 @@ The broken links detection is only available for a production build (`docusaurus
 
 :::
 
+#### Example Configuration for i18n Sites
+
+To reject broken links for the main language while ignoring them for translated versions, you can configure the `i18n.localeConfigs` as follows:
+
+```js title="docusaurus.config.js"
+export default {
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr', 'de'],
+    localeConfigs: {
+      en: {
+        onBrokenLinks: 'throw',
+      },
+      fr: {
+        onBrokenLinks: 'ignore',
+      },
+      de: {
+        onBrokenLinks: 'ignore',
+      },
+    },
+  },
+};
+```
+
+This setup ensures that the main language (`en`) throws errors for broken links, while translated languages (`fr`, `de`) ignore them. Adjust your configuration to match the locales you support and your desired handling behavior.
+
 ### `onBrokenAnchors` {#onBrokenAnchors}
 
 - Type: `'ignore' | 'log' | 'warn' | 'throw'`
